@@ -37,15 +37,23 @@ def count_step_to_exit(maze, j, i):
                 return dist[neighbour[0]][neighbour[1]]
 
 
+def count_steps(step):
+    if step != 0:
+        step += 1
+    return step
+
+
 def main():
     maze = [[0, 0, 0, 0, 0],
-            [0, 1, 1, 0, 0],
-            [0, 1, 0, 1, 1],
             [0, 1, 1, 1, 0],
-            [0, 0, 0, 0, 0]]
+            [0, 1, 0, 1, 0],
+            [0, 1, 1, 1, 0],
+            [0, 0, 0, 1, 0]]
     x, y = 1, 1
     step = count_step_to_exit(maze, x, y)
-    print(step)
+    steps = count_steps(step)
+    print(steps)
+    return steps
 
 
 if __name__ == '__main__':
