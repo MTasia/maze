@@ -19,7 +19,17 @@ def on_border(i, j, maze):
     return j == 0 or i == 0 or j == len(maze[0]) - 1 or i == len(maze) - 1
 
 
-def count_step_to_exit(maze, j, i):
+def count_steps_to_exit(maze, start):
+    step = count_steps(maze, start)
+    if step != 0:
+        step += 1
+    return step
+
+
+
+def count_steps(maze, start):
+    j = start[0]
+    i = start[1]
     we_were = [[False for j in range(len(maze[0]))] for i in range(len(maze))]
     dist = [[0 for j in range(len(maze[0]))] for i in range(len(maze))]
     queue = deque()
@@ -37,12 +47,6 @@ def count_step_to_exit(maze, j, i):
                 return dist[neighbour[0]][neighbour[1]]
 
 
-def count_steps(step):
-    if step != 0:
-        step += 1
-    return step
-
-
 def main():
     maze = [[0, 0, 0, 0, 0],
             [0, 1, 1, 1, 0],
@@ -50,10 +54,10 @@ def main():
             [0, 1, 1, 1, 0],
             [0, 0, 0, 1, 0]]
     x, y = 1, 1
-    step = count_step_to_exit(maze, x, y)
-    steps = count_steps(step)
-    print(steps)
-    return steps
+    start = (x, y)
+    step = count_steps_to_exit(maze, start)
+    print(step)
+    return step
 
 
 if __name__ == '__main__':
